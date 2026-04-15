@@ -9,8 +9,8 @@ public class Scoreboard {
   private int AwayScore;
 
 
-private String LastActionDescription;
-private Stack<ScoringAction> GameHistory;
+  private String LastActionDescription;
+  private Stack<ScoringAction> GameHistory;
 
   // Helper to represent a scoring action
   private static class ScoringAction {
@@ -45,12 +45,45 @@ private Stack<ScoringAction> GameHistory;
     AwayTeam = _AwayTeam;
   }
 
+  //------ [Point Adders] ------
+  public void addPointsToHome(int points) {
+    //checking to make sure the team is set and valid amount of points
+    requireTeamNames();
+    requirePositivePoints(points);
+
+    GameHistory.push(new ScoringAction("Home", points));
+    HomeScore += points;
+    LastActionDescription = HomeTeam + " +" + points;
+  }
+
+  public void addPointsToAway(int points) {
+    //checking to make sure the team is set and valid amount of points
+    requireTeamNames();
+    requirePositivePoints(points);
+
+    GameHistory.push(new ScoringAction("Away", points));
+    AwayScore += points;
+    LastActionDescription = AwayTeam + " +" + points;
+  }
+
   //------ [Clear the game and restart] ------
   public void restart() {
     HomeScore = 0;
     AwayScore = 0;
     GameHistory.clear();
-    LastActionDescription = "Game has been restarted";
+    LastActionDescription = "Game has been restarted!";
+  }
+
+  public void undoLast() {
+    //Check to see if there is an action to undo
+    if (GameHistory.isEmpty()) throw new IllegalStateException("There is no previous action!");
+
+    //else
+    ScoringAction last = GameHistory.pop();
+    if (last.team.equals("Home")) HomeScore -= last.points;
+    else AwayScore -= last.points;
+    //updating the last action
+    LastActionDescription = "Undo: removed +" + last.points + " from " + last.team;
   }
 
 
@@ -70,4 +103,6 @@ private Stack<ScoringAction> GameHistory;
    private void requirePositivePoints(int points) {
     if (points <= 0) throw new IllegalArgumentException("Number of piitns must be greater than 0!");
    }  
+
+
 }
