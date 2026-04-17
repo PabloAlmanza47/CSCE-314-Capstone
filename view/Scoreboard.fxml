@@ -32,25 +32,28 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-
-<VBox spacing="20" alignment="CENTER" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisplayController" stylesheets="@style.css" styleClass="root">
+<VBox spacing="24" alignment="CENTER" prefHeight="420.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisplayController" stylesheets="@style.css" styleClass="root">
   <children>
     <Label text="SCOREBOARD" styleClass="title"/>
-    <HBox spacing="80" alignment="CENTER">
-      <VBox alignment="CENTER" spacing="10">
+    <Separator styleClass="divider"/>
+    <HBox spacing="40" alignment="CENTER">
+      <VBox alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
         <Label fx:id="homeTeamLabel" text="HOME" styleClass="team-name"/>
-        <Label fx:id="homeScoreLabel" text="0" styleClass="score"/>
+        <Label fx:id="homeScoreLabel" text="0"   styleClass="score"/>
       </VBox>
-      <VBox alignment="CENTER" spacing="10">
+      <VBox alignment="CENTER" spacing="4">
+        <Label text="VS" styleClass="vs-label"/>
+      </VBox>
+      <VBox alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
         <Label fx:id="awayTeamLabel" text="AWAY" styleClass="team-name"/>
-        <Label fx:id="awayScoreLabel" text="0" styleClass="score"/>
+        <Label fx:id="awayScoreLabel" text="0"   styleClass="score"/>
       </VBox>
     </HBox>
+    <Separator styleClass="divider"/>
     <Label fx:id="lastActionLabel" text="Game Ready" alignment="CENTER" maxWidth="Infinity" styleClass="last-action"/>
   </children>
 </VBox>

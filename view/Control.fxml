@@ -31,31 +31,35 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="20" alignment="TOP_CENTER" prefHeight="500.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControlController" stylesheets="@style.css" styleClass="root">
+<VBox spacing="20" alignment="TOP_CENTER" prefHeight="520.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControlController" stylesheets="@style.css" styleClass="root">
   <children>
     <Label text="CONTROL PANEL" styleClass="title"/>
     <HBox spacing="10" alignment="CENTER">
-      <TextField fx:id="homeInput" promptText="Home Team" styleClass="input"/>
-      <TextField fx:id="awayInput" promptText="Away Team" styleClass="input"/>
-      <Button text="Set Names" onAction="#handleSetNames"/>
+      <TextField fx:id="homeInput" promptText="Home Team Name" styleClass="input"/>
+      <TextField fx:id="awayInput" promptText="Away Team Name" styleClass="input"/>
+      <Button text="Set Names" onAction="#handleSetNames" styleClass="set-button"/>
     </HBox>
-    <HBox spacing="20" alignment="CENTER">
-      <RadioButton fx:id="homeRadio" text="Home"/>
-      <RadioButton fx:id="awayRadio" text="Away"/>
-    </HBox>
-    <GridPane hgap="20" vgap="20" alignment="CENTER">
-      <Button text="+6&#10;Touchdown" onAction="#handleAdd6" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <Button text="+3&#10;Field Goal" onAction="#handleAdd3" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-      <Button text="+2&#10;Safety" onAction="#handleAdd2" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-      <Button text="+1&#10;Extra Point" onAction="#handleAdd1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <VBox spacing="8" alignment="CENTER">
+      <Label text="SELECT TEAM" styleClass="section-label"/>
+      <HBox spacing="30" alignment="CENTER" styleClass="selector-box">
+        <RadioButton fx:id="homeRadio" text="Home" styleClass="radio-button"/>
+        <RadioButton fx:id="awayRadio" text="Away" styleClass="radio-button"/>
+      </HBox>
+    </VBox>
+    <Label text="ADD POINTS" styleClass="section-label"/>
+    <GridPane hgap="16" vgap="16" alignment="CENTER">
+      <Button text="+6  TOUCHDOWN"  onAction="#handleAdd6" styleClass="scoring-button" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+      <Button text="+3  FIELD GOAL" onAction="#handleAdd3" styleClass="scoring-button" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <Button text="+2  SAFETY"     onAction="#handleAdd2" styleClass="scoring-button" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+      <Button text="+1  EXTRA PT"   onAction="#handleAdd1" styleClass="scoring-button" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     </GridPane>
+
     <HBox spacing="20" alignment="CENTER">
-      <Button text="Undo" onAction="#handleUndo"/>
-      <Button text="Clear Game" onAction="#handleClear"/>
+      <Button text="⟵  Undo" onAction="#handleUndo"  styleClass="undo-button"/>
+      <Button text="✕  Clear Game" onAction="#handleClear" styleClass="clear-button"/>
     </HBox>
   </children>
 </VBox>

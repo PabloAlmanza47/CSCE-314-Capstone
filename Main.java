@@ -31,14 +31,14 @@ public class Main extends Application {
         Stage controlStage = new Stage();
         controlStage.setTitle("Control");
         controlStage.setScene(controlScene);
-        controlStage.setX(425);
-        controlStage.setY(430);
+        controlStage.setX(100);
+        controlStage.setY(200);
 
         Stage displayStage = new Stage();
         displayStage.setTitle("Display");
         displayStage.setScene(displayScene);
-        displayStage.setX(425);
-        displayStage.setY(0);
+        displayStage.setX(800);
+        displayStage.setY(200);
         
         //adding style 
         controlScene.getStylesheets().add(
