@@ -31,6 +31,15 @@ public class Main extends Application {
 
         controlStage.show();
         displayStage.show();
+
+        //adding style 
+        controlScene.getStylesheets().add(
+            getClass().getResource("/view/style.css").toExternalForm()
+        );
+
+        displayScene.getStylesheets().add(
+            getClass().getResource("/view/style.css").toExternalForm()
+        );
     }
 
     public static void main(String[] args) {
