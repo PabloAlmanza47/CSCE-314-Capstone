@@ -8,7 +8,8 @@ public class ControlController {
 
     private Scoreboard model;
     private DisplayController displayController;
-
+    @FXML private TextField homeInput;
+    @FXML private TextField awayInput;
     @FXML private Label mainLabel;
     @FXML private RadioButton homeRadio;
     @FXML private RadioButton awayRadio;
@@ -42,7 +43,8 @@ public class ControlController {
             showError(e.getMessage());
         }
     }
-    
+
+
     //button functions to connect the screen to the model
     @FXML
     private void handleAdd6() {addPoints(6);}
@@ -52,4 +54,34 @@ public class ControlController {
     private void handleAdd2() {addPoints(2);}
     @FXML
     private void handleAdd1() {addPoints(1);}
+    @FXML
+    private void handleSetNames() {
+        try {
+            model.setTeamNames(homeInput.getText(), awayInput.getText());
+            displayController.updateView();
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
+    }
+    @FXML
+    private void handleUndo() {
+        try {
+            model.undoLast();
+            displayController.updateView();
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
+    }
+    @FXML
+    private void handleClear() {
+        model.restart();
+        if (displayController != null) displayController.updateView();    
+    }
+    @FXML
+    public void initialize() {
+        ToggleGroup group = new ToggleGroup();
+        homeRadio.setToggleGroup(group);
+        awayRadio.setToggleGroup(group);
+        homeRadio.setSelected(true);
+    }
 }

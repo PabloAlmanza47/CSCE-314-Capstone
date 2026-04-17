@@ -23,12 +23,14 @@ public class DisplayController {
 
   //Used to connect the actions from the Controler to the scoreboard display
   public void updateView() {
-      if (model == null) return;
+      if (model == null || homeTeamLabel == null) return;
 
-      homeTeamLabel.setText(model.getHomeName());
-      awayTeamLabel.setText(model.getAwayName());
+      homeTeamLabel.setText( model.getHomeName().isEmpty() ? "HOME" : model.getHomeName());
+      awayTeamLabel.setText(model.getAwayName().isEmpty() ? "AWAY" : model.getAwayName());
       homeScoreLabel.setText(String.valueOf(model.getHomeScore()));
       awayScoreLabel.setText(String.valueOf(model.getAwayScore()));
-      lastActionLabel.setText(model.getLastActionDescription());
+
+      String last = model.getLastActionDescription();
+      lastActionLabel.setText(last == null || last.isEmpty() ? "Last: -" : last);
   }
 }

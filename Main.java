@@ -1,20 +1,31 @@
+import controller.ControlController;
+import controller.DisplayController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Scoreboard;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Scoreboard model = new Scoreboard();
 
         //Control window
         FXMLLoader controlLoader = new FXMLLoader(getClass().getResource("/view/control.fxml"));
         Scene controlScene = new Scene(controlLoader.load());
+        ControlController controlController = controlLoader.getController();
 
         //Display window
         FXMLLoader displayLoader = new FXMLLoader(getClass().getResource("/view/scoreboard.fxml"));
         Scene displayScene = new Scene(displayLoader.load());
+        DisplayController displayController = displayLoader.getController();
+
+        //connecting to the controllers and model
+        controlController.setModel(model);
+        displayController.setModel(model);
+        controlController.setDisplayController(displayController);
 
         //----[Displaying both windows on the users screen]----
         Stage controlStage = new Stage();
@@ -28,10 +39,7 @@ public class Main extends Application {
         displayStage.setScene(displayScene);
         displayStage.setX(425);
         displayStage.setY(0);
-
-        controlStage.show();
-        displayStage.show();
-
+        
         //adding style 
         controlScene.getStylesheets().add(
             getClass().getResource("/view/style.css").toExternalForm()
@@ -40,6 +48,9 @@ public class Main extends Application {
         displayScene.getStylesheets().add(
             getClass().getResource("/view/style.css").toExternalForm()
         );
+
+        controlStage.show();
+        displayStage.show();
     }
 
     public static void main(String[] args) {

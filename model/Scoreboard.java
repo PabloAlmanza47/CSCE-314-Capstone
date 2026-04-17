@@ -37,8 +37,8 @@ public class Scoreboard {
   //------ [Setting the name of both teams] ------
   public void setTeamNames(String _HomeTeam, String _AwayTeam) {
     //checking to see if either of the names are invalid
-    if (_HomeTeam == null || _HomeTeam.trim().isEmpty()) {throw new IllegalAccessError("Home team name cannot be blank!");}
-    if (_AwayTeam == null || _AwayTeam.trim().isEmpty()) {throw new IllegalAccessError("Away team name cannot be blank!");}
+    if (_HomeTeam == null || _HomeTeam.trim().isEmpty()) {throw new IllegalArgumentException("Home team name cannot be blank!");}
+    if (_AwayTeam == null || _AwayTeam.trim().isEmpty()) {throw new IllegalArgumentException("Away team name cannot be blank!");}
 
     //otherwise
     HomeTeam = _HomeTeam;
@@ -63,7 +63,7 @@ public class Scoreboard {
 
     GameHistory.push(new ScoringAction("Away", points));
     AwayScore += points;
-    LastActionDescription = AwayTeam + " +" + points;
+    LastActionDescription = AwayTeam + " +" + points + " points (score update)";
   }
 
   //------ [Clear the game and restart] ------
@@ -101,7 +101,7 @@ public class Scoreboard {
     if (!hasTeamName()) throw new IllegalStateException("Team names must be set before marking either team for points!");
    }
    private void requirePositivePoints(int points) {
-    if (points <= 0) throw new IllegalArgumentException("Number of piitns must be greater than 0!");
+    if (points <= 0) throw new IllegalArgumentException("Number of points must be greater than 0!");
    }  
 
 
