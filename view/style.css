@@ -1,17 +1,42 @@
-
-
-.button {
-  -fx-background-color: #030712;
-  -fx-text-fill: white;
-  -fx-font-size: 14px;
-  -fx-border-color: white;
-  -fx-borer-width: 2px;
-  -fx-border-radius: 10;
-  -fx-background-radius: 10;
-  -fx-padding: 8 16;
+.root {
+    -fx-background-color: #111827;
 }
 
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.team-name {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 18px;
+}
+
+.score {
+    -fx-text-fill: white;
+    -fx-font-size: 64px;
+    -fx-font-weight: bold;
+}
+
+.last-action {
+    -fx-background-color: #1E3A8A;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10;
+}
+
+.button {
+    -fx-background-color: #030712;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;   /* FIXED TYPO */
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+}
 
 .button:hover {
-  -fx-background-color: #1f2944;
+    -fx-background-color: #1f2944;
 }
