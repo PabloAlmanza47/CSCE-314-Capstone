@@ -54,14 +54,14 @@ Two controllers bridge the model and the view. `ControlController` handles all u
 CSCE-314-Capstone/
 ├── controller/
 │   ├── ControlController.java
-│   ├── DisplayController.java
-│   └── Main.java
+│   └── DisplayController.java
 ├── model/
 │   └── Scoreboard.java
-└── view/
-    ├── Control.fxml
-    ├── Scoreboard.fxml
-    └── style.css
+├── view/
+│   ├── Control.fxml
+│   ├── Scoreboard.fxml
+│   └── style.css
+└── Main.java
 ```
 
 ### Compile
@@ -145,12 +145,12 @@ The test class `ScoreboardTests.java` uses a plain `main` method — no JUnit or
 
 **Compile** (from the project root, alongside the model):
 ```bash
-javac -d out model/Scoreboard.java ScoreboardTests.java
+javac -d out model/Scoreboard.java model/ScoreboardTests.java
 ```
 
 **Run:**
 ```bash
-java -cp out ScoreboardTests
+java -cp out model/ScoreboardTests
 ```
 
 Each test prints either `PASS: <test name>` or `FAIL: <reason>` to the console. A summary line at the end reports total passed and failed.

@@ -1,11 +1,5 @@
 package model;
-
 /**
- * ScoreboardTests.java
- *
- * Plain-Java unit tests for model.Scoreboard.
- * No JUnit required — compile and run with a standard JDK.
- *
  * Compile:
  *   javac -d out model/Scoreboard.java ScoreboardTests.java
  * Run:
@@ -13,14 +7,12 @@ package model;
  */
 public class ScoreboardTests {
 
-    // ------------------------------------------------------------------ //
-    //  Lightweight test harness
-    // ------------------------------------------------------------------ //
+    // -----------------------[Lightweight test harness]-------------------------------- //
 
     private static int passed = 0;
     private static int failed = 0;
 
-    /** Passes when condition is true. */
+    // Passes when condition is true
     private static void assertTrue(String testName, boolean condition) {
         if (condition) {
             System.out.println("PASS: " + testName);
@@ -31,7 +23,7 @@ public class ScoreboardTests {
         }
     }
 
-    /** Passes when two ints are equal. */
+    // Passes when two ints are equal.
     private static void assertEquals(String testName, int expected, int actual) {
         if (expected == actual) {
             System.out.println("PASS: " + testName);
@@ -43,7 +35,7 @@ public class ScoreboardTests {
         }
     }
 
-    /** Passes when two Strings are equal (null-safe). */
+    // Passes when two Strings are equal (null-safe).
     private static void assertEquals(String testName, String expected, String actual) {
         if (expected == null ? actual == null : expected.equals(actual)) {
             System.out.println("PASS: " + testName);
@@ -55,13 +47,10 @@ public class ScoreboardTests {
         }
     }
 
-    /**
-     * Passes when the block throws the expected exception type.
-     * Fails if no exception is thrown, or if a different type is thrown.
-     */
-    private static void assertThrows(String testName,
-                                     Class<? extends Exception> expected,
-                                     Runnable block) {
+     //Passes when the block throws the expected exception type.
+     //Fails if no exception is thrown, or if a different type is thrown.
+
+    private static void assertThrows(String testName, Class<? extends Exception> expected, Runnable block) {
         try {
             block.run();
             System.out.println("FAIL: " + testName
@@ -81,9 +70,7 @@ public class ScoreboardTests {
         }
     }
 
-    // ------------------------------------------------------------------ //
-    //  Main entry point
-    // ------------------------------------------------------------------ //
+    // -----------------------[Main entry point]-------------------------------- //
 
     public static void main(String[] args) {
         System.out.println("========================================");
@@ -121,9 +108,7 @@ public class ScoreboardTests {
         System.out.println("========================================");
     }
 
-    // ------------------------------------------------------------------ //
-    //  1. Happy Paths — Team Names
-    // ------------------------------------------------------------------ //
+    // -----------------------[1. Happy Paths — Team Names]-------------------------------- //
 
     private static void testSetTeamNames() {
         Scoreboard sb = new Scoreboard();
@@ -132,9 +117,7 @@ public class ScoreboardTests {
         assertEquals("setTeamNames — away name stored correctly", "Cowboys", sb.getAwayName());
     }
 
-    // ------------------------------------------------------------------ //
-    //  2. Happy Paths — Adding Points
-    // ------------------------------------------------------------------ //
+    // -----------------------[2. Happy Paths — Adding Points]-------------------------------- //
 
     private static void testAddPointsHappyPath() {
         Scoreboard sb = new Scoreboard();
@@ -164,9 +147,7 @@ public class ScoreboardTests {
         assertEquals("Score accumulation — home score after 6+1+3", 10, sb.getHomeScore());
     }
 
-    // ------------------------------------------------------------------ //
-    //  3. Undo Functionality
-    // ------------------------------------------------------------------ //
+    // -----------------------[3. Undo Functionality]-------------------------------- //
 
     private static void testUndoSingleAction() {
         Scoreboard sb = new Scoreboard();
@@ -200,9 +181,7 @@ public class ScoreboardTests {
         assertEquals("undoLast — home score still 0", 0, sb.getHomeScore());
     }
 
-    // ------------------------------------------------------------------ //
-    //  4. Clear / Restart
-    // ------------------------------------------------------------------ //
+    // -----------------------[4. Clear / Restart]-------------------------------- //
 
     private static void testClearResetsScores() {
         Scoreboard sb = new Scoreboard();
@@ -232,9 +211,7 @@ public class ScoreboardTests {
                 IllegalStateException.class, sb::undoLast);
     }
 
-    // ------------------------------------------------------------------ //
-    //  5. Error Cases
-    // ------------------------------------------------------------------ //
+    // -----------------------[5. Error Cases]-------------------------------- //
 
     private static void testBlankHomeNameThrows() {
         Scoreboard sb = new Scoreboard();
@@ -298,9 +275,7 @@ public class ScoreboardTests {
                 () -> sb.addPointsToHome(0));
     }
 
-    // ------------------------------------------------------------------ //
-    //  6. Last Action Description
-    // ------------------------------------------------------------------ //
+    // -----------------------[6. Last Action Description]-------------------------------- //
 
     private static void testLastActionDescriptionAfterHome() {
         Scoreboard sb = new Scoreboard();
@@ -331,9 +306,7 @@ public class ScoreboardTests {
                 desc != null && !desc.trim().isEmpty());
     }
 
-    // ------------------------------------------------------------------ //
-    //  7. hasTeamName / hasHistory Flags
-    // ------------------------------------------------------------------ //
+    // -----------------------[7. hasTeamName / hasHistory Flags]-------------------------------- //
 
     private static void testHasTeamNameFalseByDefault() {
         Scoreboard sb = new Scoreboard();
