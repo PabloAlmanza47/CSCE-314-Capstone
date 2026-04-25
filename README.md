@@ -23,6 +23,7 @@ The model is a pure Java class with zero JavaFX dependencies. It owns all game s
 The view layer is defined entirely in FXML (built with SceneBuilder) and styled with a shared CSS file. It has no logic — it only describes layout and binds UI element IDs to controller fields via `fx:id`. This makes the UI easy to redesign without touching any Java.
 
 **Controller (`controller/ControlController.java`, `controller/DisplayController.java`)**
+The application opens two independent stages on launch: There is a Control Panel window for the scorekeeper and a Scoreboard Display window for the audience to see the current score of the game. Each stage has its own FXML view file along with its own dedicated controller file.
 Two controllers bridge the model and the view. `ControlController` handles all user input events (button clicks, text field reads) and calls the appropriate model methods. `DisplayController` is responsible for reading state out of the model and pushing it to the display labels. Neither controller contains game logic — they only coordinate between the model and the UI.
 
 ---
@@ -73,7 +74,7 @@ Replace `/path/to/javafx-sdk/lib` with the actual path to your JavaFX SDK's `lib
 javac --module-path "C:\javafx-sdk\lib" ^
       --add-modules javafx.controls,javafx.fxml ^
       -d out ^
-      controller\*.java model\*.java
+      Main.java controller\*.java model\*.java
 ```
 
 **macOS / Linux**
@@ -81,7 +82,7 @@ javac --module-path "C:\javafx-sdk\lib" ^
 javac --module-path /path/to/javafx-sdk/lib \
       --add-modules javafx.controls,javafx.fxml \
       -d out \
-      controller/*.java model/*.java
+      Main.java controller/*.java model/*.java
 ```
 
 ### Copy View Resources
@@ -105,7 +106,7 @@ cp -r view out/view
 java --module-path "C:\javafx-sdk\lib" ^
      --add-modules javafx.controls,javafx.fxml ^
      -cp out ^
-     controller.Main
+     Main
 ```
 
 **macOS / Linux**
@@ -113,7 +114,7 @@ java --module-path "C:\javafx-sdk\lib" ^
 java --module-path /path/to/javafx-sdk/lib \
      --add-modules javafx.controls,javafx.fxml \
      -cp out \
-     controller.Main
+     Main
 ```
 
 ---
@@ -165,3 +166,7 @@ Each test prints either `PASS: <test name>` or `FAIL: <reason>` to the console. 
 - **No negative score protection** — Undoing a score that was added before `restart()` is not possible, but a sequence of undos can theoretically bring a score below zero if history is manipulated in unexpected ways.
 - **Single game session** — There is no save/load functionality and no support for resuming a previous game.
 - **Basic UI** — No animations, no sound effects, and no per-quarter score breakdown.
+
+## References
+
+- AI assistance provided by Claude (Anthropic) for debugging and development guidance.
